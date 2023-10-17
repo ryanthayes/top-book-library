@@ -6,11 +6,68 @@
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
     <title>Book Library</title>
-    
+
 </head>
 <body>
     
+    <div class="wrapper">
+        <header id="header" class="header">
+            <h1 class="title">Odin Library</h1>
+        </header>
+
+        <section id="main" class="main">
+            
+            <dialog open id="new-book-dialog" class="new-book-dialog">
+                <form action="" method="" id="add-books-form" class="add-books-form">
+                    <h2 class="add-books-form-title">Add New Book</h2>
+                    <ul>
+                        <li>
+                            <label for="title">Title</label>
+                            <input type="text" id="title" class="title" name="title" placeholder="Title" maxlength="100">
+                        </li>
+                        <li>
+                            <label for="author">Author</label>
+                            <input type="text" id="author" class="author" name="author" placeholder="Author" maxlength="100">
+                        </li>
+                        <li>
+                            <label for="genre">Genre</label>
+                            <input type="text" id="genre" class="genre" name="genre" placeholder="Genre" maxlength="100">
+                        </li>
+                        <li>
+                            <label for="date">Published Date</label>
+                            <input type="date" id="date" class="date" name="date" placeholder="Published Date">
+                        </li>
+                        <li>
+                            <label for="pages">Pages</label>
+                            <input type="number" id="pages" class="pages" name="pages" placeholder="Pages" max="2500">
+                        </li>
+                        <li>
+                            <label for="read">Read</label>
+                            <input type="radio" id="read" class="read" name="read" value="read">
+                        </li>
+                    </ul>
+                    <button id="btn-form-submit" btn="btn btn-form-submit" type="submit">Add to Library</button>
+                </form>
+            </dialog>
+            
+            <div>
+                <button id="btn-modal" class="btn btn-modal">Add Book</button>
+            </div>
+
+            <div id="library-grid" class="library-grid"></div>
+        </section>
+        
+        <footer id="footer" class="flex align-items-center">
+            <p>© <span id="year"></span> Ryan Hayes</p><a target="_blank" href="https://github.com/ryanthayes/top-book-library"><img class="github" src="images/github-gray.svg" height="25px"></a>
+            <script>
+                document.getElementById("year").innerHTML = new Date().getFullYear();
+            </script>
+        </footer>
+    
+    </div>
+
 </body>
 </html>
