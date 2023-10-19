@@ -148,40 +148,48 @@ h6 {
 
 /* === MODAL === */
 
-.add-book-modal {
-    margin: 0 auto;
+.book-modal {
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
     border: 0;
     border-radius: var(--br-md);
+    box-shadow: var(--shadow);
+    z-index: 10;
+}
+
+dialog::backdrop {
+    background-color: rgb(0 0 0 / 0.4);
 }
 
 /* === FORM === */
 
-.add-book-form-title {
+.book-form-title {
     margin-bottom: var(--spacer-sm);
     font-size: var(--fs-600);
     font-weight: var(--fw-bold);
     color: var(--clr-primary-900);
 }
-.add-book-input-container {
+.book-input-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
     margin-bottom: var(--spacer-md);
     list-style: none;
 }
-.add-book-label {
+.book-label {
     font-size: var(--fs-400);
     font-weight: var(--fw-medium);
     color: var(--clr-primary-900);
 }
-.add-book-input {
+.book-input {
     padding: var(--spacer-sm);
     background-color: var(--clr-primary-100);
     border: 0;
     border-radius: var(--br-sm);
     box-shadow: inset var(--shadow);
 }
-.add-book-input::placeholder {
+.book-input::placeholder {
     font-size: var(--fs-300);
 }
 
@@ -255,6 +263,7 @@ h6 {
 .gap-lg {
     gap: var(--spacer-lg);
 }
+
 /* ==== MEDIA QUERIES === */
 
 /* * {

@@ -27,32 +27,32 @@
 
     <main class="main">
         
-        <!-- Add Book Modal -->
-        <section class="add-book-modal-container">
-            <dialog close id="add-book-modal" class="add-book-modal">
+        <!-- Book Modal -->
+        <section class="book-modal-container">
+            <dialog id="book-modal" class="book-modal">
                 <div class="container">
-                    <form action="" method="" id="add-book-form" class="add-book-form flex flex-columns align-items-center gap-md">
-                        <h2 class="add-book-form-title">Add New Book</h2>
+                    <form action="" method="" id="book-form" class="book-form flex flex-columns align-items-center gap-md">
+                        <h2 class="book-form-title">Add New Book</h2>
                         <ul>
-                            <li class="add-book-input-container">
-                                <label for="title" class="add-book-label">Title</label>
-                                <input type="text" id="book-title" class="add-book-input" name="book-title" placeholder="Title" maxlength="100">
+                            <li class="book-input-container">
+                                <label for="title" class="book-label">Title</label>
+                                <input type="text" id="book-title" class="book-input" name="book-title" placeholder="Title" maxlength="100" required>
                             </li>
-                            <li class="add-book-input-container">
-                                <label for="author" class="add-book-label">Author</label>
-                                <input type="text" id="book-author" class="add-book-input" name="book-author" placeholder="Author" maxlength="100">
+                            <li class="book-input-container">
+                                <label for="author" class="book-label">Author</label>
+                                <input type="text" id="book-author" class="book-input" name="book-author" placeholder="Author" maxlength="100" required>
                             </li>
-                            <li class="add-book-input-container">
-                                <label for="genre" class="add-book-label">Genre</label>
-                                <input type="text" id="book-genre" class="add-book-input" name="book-genre" placeholder="Genre" maxlength="100">
+                            <li class="book-input-container">
+                                <label for="genre" class="book-label">Genre</label>
+                                <input type="text" id="book-genre" class="book-input" name="book-genre" placeholder="Genre" maxlength="100" required>
                             </li>
-                            <li class="add-book-input-container">
-                                <label for="pages" class="add-book-label">Pages</label>
-                                <input type="number" id="book-pages" class="add-book-input" name="book-pages" placeholder="Pages" max="2500">
+                            <li class="book-input-container">
+                                <label for="pages" class="book-label">Pages</label>
+                                <input type="number" id="book-pages" class="book-input" name="book-pages" placeholder="Pages" max="2500" required>
                             </li>
-                            <li class="add-book-input-container">
-                                <label for="status" class="add-book-label">Status</label>
-                                <select name="book-status" id="book-status" class="add-book-input">
+                            <li class="book-input-container">
+                                <label for="status" class="book-label">Status</label>
+                                <select name="book-status" id="book-status" class="book-input" required>
                                     <option value="unread">Unread</option>
                                     <option value="read">Read</option>
                                 </select>
@@ -61,12 +61,13 @@
                         <button id="btn-form-submit" class="btn btn-form-submit" type="submit">Add to Library</button>
                     </form>
                 </div>
+                <button id="btn-book-modal-close" class="btn" formmethod="dialog">Close</button>
             </dialog>
         </section>
         
         <section class="">
             <div class="container flex justify-content-center">
-                <button id="btn-modal" class="btn btn-modal">Add Book</button>
+                <button id="btn-book-modal" class="btn btn-book-modal">Add Book</button>
             </div>
         </section>
        
