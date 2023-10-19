@@ -1,31 +1,19 @@
 // Dom elements
-const bookModal = document.getElementById('book-modal');
-const openModalBtn = document.getElementById('btn-book-modal');
-const closeModalBtn = document.getElementById('btn-book-modal-close');
-const bookForm = document.getElementById('book-form');
-const bookFormSubmitBtn = document.getElementById('btn-form-submit');
+const bookModal = document.querySelector('#book-modal');
+const openModalBtn = document.querySelector('#btn-book-modal');
+const bookForm = document.querySelector('#book-form');
+const bookFormSubmitBtn = document.querySelector('#btn-form-submit');
 const libraryGrid = document.getElementById('library-grid');
-const title = bookForm['book-title'].value;
-const author = bookForm['book-author'].value;
-const genre = bookForm['book-genre'].value;
-const pages = bookForm['book-pages'].value;
-const status = bookForm['book-status'].value;
 
 const library = JSON.parse(localStorage.getItem('library')) || [];
 
-const addBook = (title, author, genre, pages, status) => {
-    library.push({
-        title,
-        author,
-        genre,
-        pages,
-        status
-    })
-
-    localStorage.setItem('library', JSON.stringify(library));
-    
-    return { title, author, genre, pages, status };
-}
+function Book(title, author, genre, pages, status) {
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.pages = pages;
+    this.status = status;
+};
 
 const createLibraryGrid = ({ title, author, genre, pages, status }) => {
     // Create DOM elements
@@ -56,57 +44,38 @@ const createLibraryGrid = ({ title, author, genre, pages, status }) => {
     libraryGrid.appendChild(bookDiv)
 };
 
+const addBookToLibrary = () => {
+    const title = document.querySelector('#book-title').value;
+    const author = document.querySelector('#book-author').value;
+    const genre = document.querySelector('#book-genre').value;
+    const pages = document.querySelector('#book-pages').value;
+    const status = document.querySelector('#book-status').value;
+    const newBook = new Book(title, author, genre, pages, status);
 
-bookForm.onsubmit = (e) => {
-    e.preventDefault(); // Prevent default browser behavior 
-
-    const newBook = addBook(
-        title,
-        author,
-        genre,
-        pages, 
-        status
-    );
+    library.push(newBook);
+    localStorage.setItem('library', JSON.stringify(library));
     
     createLibraryGrid(newBook);
 
-    title.value = "";
-    author.value = "";
-    genre.value = "";
-    pages.value = "";
-    status.value = "";
+    return { title, author, genre, pages, status };
 };
 
-// Event listeners
+//Event listeners
 openModalBtn.addEventListener('click', () => {
     bookModal.showModal();
 });
 
-closeModalBtn.addEventListener('click', () => {
-    bookModal.close();
+// bookForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     addBookToLibrary();
+// });
+bookForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    addBookToLibrary();
 });
-
-bookModal.addEventListener('click', e => {
-    const dialogDimensions = bookModal.getBoundingClientRect()
-    if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-    ) {
-        bookModal.close()
-    }
-});
-
-
-// const removeBook = document.createElement('button');
-// removeBook.classList.add('btn', 'btn-remove-book');
-
-
 
 // Things to do
 
 // Check if book exists, if so don't add
-// Add Book toggle on off modal
 // Delete Cards
 // Spacing for cards

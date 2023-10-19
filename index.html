@@ -35,23 +35,23 @@
                         <h2 class="book-form-title">Add New Book</h2>
                         <ul>
                             <li class="book-input-container">
-                                <label for="title" class="book-label">Title</label>
+                                <label for="book-title" class="book-label">Title</label>
                                 <input type="text" id="book-title" class="book-input" name="book-title" placeholder="Title" maxlength="100" required>
                             </li>
                             <li class="book-input-container">
-                                <label for="author" class="book-label">Author</label>
+                                <label for="book-author" class="book-label">Author</label>
                                 <input type="text" id="book-author" class="book-input" name="book-author" placeholder="Author" maxlength="100" required>
                             </li>
                             <li class="book-input-container">
-                                <label for="genre" class="book-label">Genre</label>
+                                <label for="book-genre" class="book-label">Genre</label>
                                 <input type="text" id="book-genre" class="book-input" name="book-genre" placeholder="Genre" maxlength="100" required>
                             </li>
                             <li class="book-input-container">
-                                <label for="pages" class="book-label">Pages</label>
+                                <label for="book-pages" class="book-label">Pages</label>
                                 <input type="number" id="book-pages" class="book-input" name="book-pages" placeholder="Pages" max="2500" required>
                             </li>
                             <li class="book-input-container">
-                                <label for="status" class="book-label">Status</label>
+                                <label for="book-status" class="book-label">Read</label>
                                 <select name="book-status" id="book-status" class="book-input" required>
                                     <option value="unread">Unread</option>
                                     <option value="read">Read</option>
@@ -61,7 +61,7 @@
                         <button id="btn-form-submit" class="btn btn-form-submit" type="submit">Add to Library</button>
                     </form>
                 </div>
-                <button id="btn-book-modal-close" class="btn" formmethod="dialog">Close</button>
+                <button id="btn-book-modal-close" class="btn">Close</button>
             </dialog>
         </section>
         

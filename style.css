@@ -198,9 +198,10 @@ dialog::backdrop {
 .library-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: var(--br-md);
 }
 
-.library-grid div {
+.book-card {
     /* width: 145px;
     height: 225px; */
     padding: var(--spacer-md);
