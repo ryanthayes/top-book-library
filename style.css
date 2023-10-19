@@ -187,9 +187,18 @@ h6 {
 
 /* === LIBRARY === */
 
-.book-card {
-    width: 145px;
-    height: 225px;
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.library-grid div {
+    /* width: 145px;
+    height: 225px; */
+    padding: var(--spacer-md);
+    color: var(--clr-primary-100);
+    background-color: var(--clr-primary-900);
+    border-radius: var(--br-md);
 }
 
 /* === BUTTONS === */
