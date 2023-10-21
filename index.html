@@ -7,7 +7,13 @@
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">   
+    
+    <!--Font Awesome icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!--Iconify icons-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -20,9 +26,15 @@
 <body>  
         
     <header class="header">
-        <div class="container">
-            <h1 class="title">Odin Library</h1>
-        </div>
+        <div class="container flex align-items-center justify-content-between">
+            <div class="flex align-items-center gap-md">
+                <i class="fa-solid fa-book-open-reader fa-xl"></i>
+                <h1 class="title">Booked</h1>
+            </div>
+            <div>
+                <iconify-icon id="btn-book-modal" class="btn-book-modal" icon="healthicons:book" width="35px"></iconify-icon>
+            </div>    
+        </div> 
     </header>
 
     <main class="main">
@@ -35,40 +47,36 @@
                         <h2 class="book-form-title">Add New Book</h2>
                         <ul>
                             <li class="book-input-container">
-                                <label for="book-title" class="book-label">Title</label>
-                                <input type="text" id="book-title" class="book-input" name="book-title" placeholder="Title" maxlength="100" required>
+                                <label for="book-title" class="">Title</label>
+                                <input id="book-title" type="text" class="book-input" placeholder="Title" maxlength="100" required>
                             </li>
                             <li class="book-input-container">
                                 <label for="book-author" class="book-label">Author</label>
-                                <input type="text" id="book-author" class="book-input" name="book-author" placeholder="Author" maxlength="100" required>
+                                <input id="book-author" type="text" class="book-input" name="book-author" placeholder="Author" maxlength="100" required>
                             </li>
                             <li class="book-input-container">
                                 <label for="book-genre" class="book-label">Genre</label>
-                                <input type="text" id="book-genre" class="book-input" name="book-genre" placeholder="Genre" maxlength="100" required>
+                                <input  id="book-genre" type="text" class="book-input" name="book-genre" placeholder="Genre" maxlength="100" required>
                             </li>
                             <li class="book-input-container">
                                 <label for="book-pages" class="book-label">Pages</label>
-                                <input type="number" id="book-pages" class="book-input" name="book-pages" placeholder="Pages" max="2500" required>
+                                <input id="book-pages" type="number" class="book-input" name="book-pages" placeholder="Pages" max="2500" required>
                             </li>
                             <li class="book-input-container">
-                                <label for="book-status" class="book-label">Read</label>
-                                <select name="book-status" id="book-status" class="book-input" required>
-                                    <option value="unread">Unread</option>
-                                    <option value="read">Read</option>
+                                <label for="book-read" class="book-label">Read</label>
+                                <select id="book-read" name="book-read" class="book-input" required>
+                                    <option value="false">Unread</option>
+                                    <option value="true">Read</option>
                                 </select>
                             </li>
                         </ul>
-                        <button id="btn-form-submit" class="btn btn-form-submit" type="submit">Add to Library</button>
+                        <div>
+                            <button id="btn-form-submit" class="btn btn-form" type="submit">Add to Library</button>
+                            <button id="btn-form-cancel" class="btn btn-form">Cancel</button>
+                        </div>
                     </form>
                 </div>
-                <button id="btn-book-modal-close" class="btn">Close</button>
             </dialog>
-        </section>
-        
-        <section class="">
-            <div class="container flex justify-content-center">
-                <button id="btn-book-modal" class="btn btn-book-modal">Add Book</button>
-            </div>
         </section>
        
         <!-- Library -->
