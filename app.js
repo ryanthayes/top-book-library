@@ -31,36 +31,36 @@ const renderBooks = () => {
 
         const bookAuthor = document.createElement('p');
         bookAuthor.classList.add('book-author');
-        bookAuthor.innerText = `by ${library.author}`;
-
-        const bookGenre = document.createElement('p');
-        bookGenre.classList.add('book-genre');
-        bookGenre.innerText = library.genre;
+        bookAuthor.innerText = library.author;
 
         const bookPages = document.createElement('p');
         bookPages.classList.add('book-pages');
         bookPages.innerText = `Pages ${library.pages}`;
 
         const bookStatus = document.createElement('p');
-        bookStatus.classList.add('book-status');
-        bookStatus.innerText = library.status;
+        if (library.status === "Read") {
+            bookStatus.classList.add('book-status', 'fa', 'fa-eye', 'fa-lg');
+        } else {
+            bookStatus.classList.add('book-status', 'fa', 'fa-eye-slash', 'fa-lg');
+        }
+        
 
-        const bookEditContainer = document.createElement('div');
-        bookEditContainer.classList.add('book-edit-container');
+        const bookHeaderEdit = document.createElement('div');
+        bookHeaderEdit.classList.add('book-header-edit');
 
-        const bookBtnContainer = document.createElement('div');
-        bookBtnContainer.classList.add('book-btn-container');
+        const bookHeader = document.createElement('div');
+        bookHeader.classList.add('book-header');
 
         const editBookBtn = document.createElement('button');
-        editBookBtn.classList.add('btn-edit-book', 'fa-solid', 'fa-pen-to-square', 'fa-xl');
+        editBookBtn.classList.add('btn-edit-book', 'fa-solid', 'fa-pen-to-square', 'fa-lg');
 
         const deleteBookBtn = document.createElement('button');
-        deleteBookBtn.classList.add('btn-delete-book', 'fa-solid', 'fa-trash-can', 'fa-xl');
+        deleteBookBtn.classList.add('btn-delete-book', 'fa-solid', 'fa-trash-can', 'fa-lg');
 
         // Add elements to DOM
-        bookBtnContainer.append(editBookBtn, deleteBookBtn);
-        bookEditContainer.append(bookBtnContainer);
-        bookCard.append(bookTitle, bookAuthor, bookGenre, bookPages, bookStatus, bookEditContainer);
+        bookHeader.append(bookStatus, bookHeaderEdit);
+        bookHeaderEdit.append(editBookBtn, deleteBookBtn);
+        bookCard.append(bookTitle, bookAuthor, bookPages, bookHeader);
         libraryGrid.appendChild(bookCard);
     }
 
@@ -86,10 +86,9 @@ const removeBook = () => {
 
 // Add books to library
 class Book {
-    constructor(title, author, genre, pages, status) {
+    constructor(title, author, pages, status) {
         this.title = title;
         this.author = author;
-        this.genre = genre;
         this.pages = pages;
         this.status = status;
     }
@@ -100,11 +99,10 @@ const addBookToLibrary = () => {
     // Get form input values
     const title = document.querySelector('#book-title').value;
     const author = document.querySelector('#book-author').value;
-    const genre = document.querySelector('#book-genre').value;
     const pages = document.querySelector('#book-pages').value;
     const status = document.querySelector('#book-status').value;
     
-    const book = new Book(title, author, genre, pages, status);
+    const book = new Book(title, author, pages, status);
 
     // Add book to array
     library.push(book)
@@ -129,7 +127,7 @@ const clearForm = () => {
     document.querySelector('#book-title').value = '';
     document.querySelector('#book-author').value = '';
     document.querySelector('#book-genre').value = '';
-    document.querySelector('#book-pages').value = '';
+    document.querySelector('#book-status').value = '';
 }
 
 // Event: Display books

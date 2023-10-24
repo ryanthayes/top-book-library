@@ -48,7 +48,6 @@
             <dialog id="book-modal" class="book-modal">
                 <div class="container">
                     <form action="" method="" id="book-form" class="book-form flex flex-columns align-items-center gap-md">
-                        <h2 class="book-form-title">Add New Book</h2>
                         <ul>
                             <li class="book-input-container">
                                 <label for="book-title" class="">Title</label>
@@ -57,10 +56,6 @@
                             <li class="book-input-container">
                                 <label for="book-author" class="book-label">Author</label>
                                 <input id="book-author" type="text" class="book-input" name="book-author" placeholder="Author" maxlength="100" required>
-                            </li>
-                            <li class="book-input-container">
-                                <label for="book-genre" class="book-label">Genre</label>
-                                <input  id="book-genre" type="text" class="book-input" name="book-genre" placeholder="Genre" maxlength="100" required>
                             </li>
                             <li class="book-input-container">
                                 <label for="book-pages" class="book-label">Pages</label>
@@ -75,8 +70,10 @@
                             </li>
                         </ul>
                         <div class="flex gap-md">
-                            <button id="btn-form-submit" class="btn btn-form" type="submit">Add Book</button>
-                            <button id="btn-form-cancel" class="btn btn-form">Cancel</button>
+                            <button id="btn-form-submit" class="btn btn-form" type="submit">Submit</button>
+                            <button id="btn-form-cancel" class="btn-cancel">
+                                <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24" class="btn-cancel-svg"><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>
+                            </button>
                         </div>
                     </form>
                 </div>
