@@ -131,6 +131,8 @@ h6 {
 }
 
 .footer {
+    position: absolute;
+    bottom: 0;
     padding: var(--spacer-md);
     height: 100px;
 }
@@ -140,13 +142,20 @@ h6 {
     background-color: var(--clr-neutral-100);
 }
 
+.site-logo {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--clr-primary-900);
+}
+
+.header-icon {
+    font-size: var(--fs-600);
+    line-height: 0;
+}
 .title {
     font-size: var(--fs-600);
     font-weight: var(--fw-semi-bold);
-}
-
-.fa-book {
-    color: var(--clr-primary-500)
+    line-height: 0;
 }
 
 /* === MODAL === */
@@ -166,6 +175,9 @@ dialog::backdrop {
 }
 
 /* === FORM === */
+.book-form {
+    padding: var(--spacer-md) 0;
+}
 
 .book-form-title {
     margin-bottom: var(--spacer-sm);
@@ -187,6 +199,7 @@ dialog::backdrop {
 }
 .book-input {
     padding: var(--spacer-sm);
+    line-height: 0;
     background-color: var(--clr-primary-100);
     border: 0;
     border-radius: var(--br-sm);
@@ -252,6 +265,7 @@ dialog::backdrop {
 .btn:hover {
     cursor: pointer;
     background-color: var(--clr-primary-800);
+    box-shadow: inset var(--shadow);
 }
 .btn-delete-book {
     color: var(--clr-primary-400);
@@ -270,6 +284,10 @@ dialog::backdrop {
 .btn-edit-book:hover {
     cursor: pointer;
     opacity: 80%;
+}
+
+.btn-form {
+    width: 150px;
 }
 
 /* ==== UTILITY CLASSES === */

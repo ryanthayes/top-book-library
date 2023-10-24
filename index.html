@@ -16,7 +16,7 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="app.js" defer></script>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
     <title>Book Library</title>
@@ -24,19 +24,23 @@
 </head>
 
 <body>  
-        
+    
+    <!-- Header -->
     <header class="header">
         <div class="container flex align-items-center justify-content-between">
-            <div class="flex align-items-center gap-md">
-                <i class="fa-solid fa-book-open-reader fa-xl"></i>
-                <h1 class="title">Booked</h1>
+            <div class="">
+                <a href="#" class="site-logo flex align-items-center gap-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.75rem" height="1.75rem" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11.55C9.64 9.35 6.48 8 3 8v11c3.48 0 6.64 1.35 9 3.55c2.36-2.19 5.52-3.55 9-3.55V8c-3.48 0-6.64 1.35-9 3.55zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3s-3 1.34-3 3s1.34 3 3 3z"/></svg>
+                    <h1 class="title">Booked</h1>
+                </a> 
             </div>
             <div>
-                <iconify-icon id="btn-book-modal" class="btn-book-modal" icon="healthicons:book" width="35px"></iconify-icon>
+                <svg id="btn-book-modal" class="btn-book-modal" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48"><path fill="currentColor" fill-rule="evenodd" d="M9 10a5 5 0 0 1 5-5h24a1 1 0 0 1 1 1v30a1 1 0 0 1-1 1H14a3 3 0 0 0-3 3v1h27v2H10a1 1 0 0 1-1-1V10Zm14 16v-5h-5v-2h5v-5h2v5h5v2h-5v5h-2Z" clip-rule="evenodd"/></svg>
             </div>    
         </div> 
     </header>
-
+    
+    <!-- Main Content -->
     <main class="main">
         
         <!-- Book Modal -->
@@ -63,15 +67,15 @@
                                 <input id="book-pages" type="number" class="book-input" name="book-pages" placeholder="Pages" max="2500" required>
                             </li>
                             <li class="book-input-container">
-                                <label for="book-read" class="book-label">Read</label>
-                                <select id="book-read" name="book-read" class="book-input" required>
-                                    <option value="false">Unread</option>
-                                    <option value="true">Read</option>
+                                <label for="book-status" class="book-label">Read</label>
+                                <select id="book-status" class="book-input" name="book-status" required>
+                                    <option value="Read">Yes</option>
+                                    <option value="Not Read">No</option>
                                 </select>
                             </li>
                         </ul>
-                        <div>
-                            <button id="btn-form-submit" class="btn btn-form" type="submit">Add to Library</button>
+                        <div class="flex gap-md">
+                            <button id="btn-form-submit" class="btn btn-form" type="submit">Add Book</button>
                             <button id="btn-form-cancel" class="btn btn-form">Cancel</button>
                         </div>
                     </form>
@@ -88,7 +92,7 @@
     </main>
     
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer flex align-items-center gap-sm">
         <div class="container flex align-items-center gap-sm">
             <p>© <span id="year"></span> Ryan Hayes</p><a target="_blank" href="https://github.com/ryanthayes/top-book-library"><img class="github" src="images/github-gray.svg" height="25px"></a>
         </div>
