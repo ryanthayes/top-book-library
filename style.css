@@ -289,6 +289,9 @@ dialog::backdrop {
     opacity: 80%;
 }
 
+.book-status {
+    display: flex;
+}
 .book-status__x {
     opacity: 50%;
 }

@@ -1,9 +1,8 @@
 // Things to do
 
-// Spacing for cards
 // Check if book exists, if so don't add
-// Delete books from local storage
 // Edit Books
+// Are you sure you want to delete?
 
 
 // DOM Elements
@@ -14,13 +13,36 @@ const formSubmit = document.querySelector('#btn-form-submit');
 const formCancel = document.querySelector('#btn-form-cancel');
 const libraryGrid = document.querySelector('#library-grid');
 
-const library = JSON.parse(localStorage.getItem("library")) || [];
+let library =  [];
 
 // UI Elements
 
+const showLibraryInfo = () => {
+    const booksRead = document.querySelector('#books-read');
+    const booksUnread = document.querySelector('#books-unread');
+    const totalBooks = document.querySelector('#total-books');
+
+    let readBooksCounter = 0;
+    let unreadBooksCounter = 0;
+    
+    // booksRead.textContent = 0;
+    // booksUnread.textContent = 0;
+
+    library.forEach((library) => {
+        if (library.status === 'Read') {
+            readBooksCounter += 1;
+            console.log(`Number of books read = ${readBooksCounter}`)
+        } else if (library.status === "Not Read") {
+            unreadBooksCounter +=1;
+            console.log(unreadBooksCounter)
+        }
+    });
+    // totalBooks.textContent = library.length;
+};   
+ 
 const renderBooks = () => {
     libraryGrid.textContent= "";
-    
+    showLibraryInfo();
     library.forEach((library, index) => {
 
         // Create DOM elements
@@ -41,12 +63,25 @@ const renderBooks = () => {
         bookPages.innerText = `Pages ${library.pages}`;
 
         const bookStatus = document.createElement('p');
-        if (library.status === "Read") {
-            bookStatus.classList.add('book-status', 'fa', 'fa-eye', 'fa-lg');
-        } else {
-            bookStatus.classList.add('book-status', 'book-status__x', 'fa', 'fa-eye-slash', 'fa-lg');
-        }
-        
+        switch (library.status) {
+            case "Read":
+                bookStatus.classList.add('book-status', 'fa', 'fa-eye', 'fa-lg');
+                break;
+            case "Not Read": 
+                bookStatus.classList.add('book-status', 'book-status__x', 'fa', 'fa-eye-slash', 'fa-lg');
+                break;
+        };
+        bookStatus.addEventListener('click', () => {         
+            switch (library.status) {
+                case "Read":
+                    library.status = "Not Read";
+                    break;
+                case "Not Read":
+                    library.status = "Read";
+                    break;
+            }
+            renderBooks();
+        });
     
         const bookHeaderEdit = document.createElement('div');
         bookHeaderEdit.classList.add('book-header-edit');
@@ -56,9 +91,17 @@ const renderBooks = () => {
 
         const editBookBtn = document.createElement('button');
         editBookBtn.classList.add('btn-edit-book', 'fa-solid', 'fa-pen-to-square', 'fa-lg');
+        editBookBtn.addEventListener('click', () => {
+            editBook();
+        })
 
         const deleteBookBtn = document.createElement('button');
         deleteBookBtn.classList.add('btn-delete-book', 'fa-solid', 'fa-trash-can', 'fa-lg');
+        deleteBookBtn.addEventListener('click', () => {
+            deleteBook();
+            addBookToStorage();
+            renderBooks();
+        });
 
         // Add elements to DOM
         bookHeader.append(bookStatus, bookHeaderEdit);
@@ -67,27 +110,6 @@ const renderBooks = () => {
         libraryGrid.appendChild(bookCard);
     }
 )};
-
-// Local Storage
-const getBooksFromStorage = () => { 
-    JSON.parse(localStorage.getItem("library"))
-}
-
-const addBookToStorage = () => { 
-    localStorage.setItem("library", JSON.stringify(library));
-};
-
-const deleteBookFromStorage = () => {
-    getBooksFromStorage();
-    console.log(JSON.parse(localStorage.getItem("library")));
-    console.log(library.title);
-    library.forEach((library, index) => {
-        if (library.title === title) {
-            library.splice(index, 1);
-        }
-    });
-
-};
 
 // Add books to library
 class Book {
@@ -99,14 +121,9 @@ class Book {
     }
 }
 
-Book.prototype.toggleStatus = function() {
-    this.read = !this.read;
-}
-
-function toggleStatus(index) {
-    library[index].toggleStatus();
-    renderBooks();
-}
+const addBookToStorage = () => { 
+    localStorage.setItem("library", JSON.stringify(library));
+};
 
 const addBookToLibrary = () => {
     
@@ -131,21 +148,17 @@ const deleteBook = (index) => {
     renderBooks();
 }
 
-const editBook = (el) => {
-    if(el.classList.contains('btn-edit-book')) {
-        
-    }
+const editBook = () => {
+    console.log("how do I edit a book?");
 }
 
-const clearForm = () => {
-    document.querySelector('#book-title').value = '';
-    document.querySelector('#book-author').value = '';
-    document.querySelector('#book-pages').value = '';
-    document.querySelector('#book-status').value = '';
-}
-
-// Event: Display books
-document.addEventListener('DOMContentLoaded', renderBooks());
+// Event: Render books to DOM
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('library')) {
+        library = JSON.parse(localStorage.getItem('library'));
+        renderBooks();
+      }
+});
 
 // Event: Add book from form input
 bookForm.addEventListener('submit', (e) => {
@@ -153,7 +166,8 @@ bookForm.addEventListener('submit', (e) => {
     
     addBookToLibrary();
     renderBooks();
-    clearForm();
+    bookForm.reset();
+    bookModal.close();
 });
 
 // Event: Open dialog modal (form)
@@ -179,12 +193,3 @@ bookModal.addEventListener('click', e => {
     }
 });
 
-// Event: Remove book from DOM
-libraryGrid.addEventListener('click', e => {
-deleteBook(e.target);})
-
-// Event: Edit book
-libraryGrid.addEventListener('mouseover', e => { 
-    // editBook(e.target);
-    console.log(e.target);
-});
