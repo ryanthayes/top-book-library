@@ -14,16 +14,19 @@ const formSubmit = document.querySelector('#btn-form-submit');
 const formCancel = document.querySelector('#btn-form-cancel');
 const libraryGrid = document.querySelector('#library-grid');
 
-// UI Elements
 const library = JSON.parse(localStorage.getItem("library")) || [];
 
+// UI Elements
+
 const renderBooks = () => {
+    libraryGrid.textContent= "";
     
-    library.forEach((library) => {
+    library.forEach((library, index) => {
 
         // Create DOM elements
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-card');
+        bookCard.setAttribute('data-index', index)
 
         const bookTitle = document.createElement('h2');
         bookTitle.classList.add('book-title');
@@ -41,10 +44,10 @@ const renderBooks = () => {
         if (library.status === "Read") {
             bookStatus.classList.add('book-status', 'fa', 'fa-eye', 'fa-lg');
         } else {
-            bookStatus.classList.add('book-status', 'fa', 'fa-eye-slash', 'fa-lg');
+            bookStatus.classList.add('book-status', 'book-status__x', 'fa', 'fa-eye-slash', 'fa-lg');
         }
         
-
+    
         const bookHeaderEdit = document.createElement('div');
         bookHeaderEdit.classList.add('book-header-edit');
 
@@ -63,26 +66,28 @@ const renderBooks = () => {
         bookCard.append(bookTitle, bookAuthor, bookPages, bookHeader);
         libraryGrid.appendChild(bookCard);
     }
-
 )};
 
 // Local Storage
 const getBooksFromStorage = () => { 
-    if (localStorage.getItem('library') === null) {
-        library = [];
-    } else {
-        const booksFromStorage = JSON.parse(localStorage.getItem("library"));
-        library = booksFromStorage;
-    }
+    JSON.parse(localStorage.getItem("library"))
 }
 
 const addBookToStorage = () => { 
     localStorage.setItem("library", JSON.stringify(library));
 };
 
-const removeBook = () => {
-    
-}
+const deleteBookFromStorage = () => {
+    getBooksFromStorage();
+    console.log(JSON.parse(localStorage.getItem("library")));
+    console.log(library.title);
+    library.forEach((library, index) => {
+        if (library.title === title) {
+            library.splice(index, 1);
+        }
+    });
+
+};
 
 // Add books to library
 class Book {
@@ -92,6 +97,15 @@ class Book {
         this.pages = pages;
         this.status = status;
     }
+}
+
+Book.prototype.toggleStatus = function() {
+    this.read = !this.read;
+}
+
+function toggleStatus(index) {
+    library[index].toggleStatus();
+    renderBooks();
 }
 
 const addBookToLibrary = () => {
@@ -111,12 +125,12 @@ const addBookToLibrary = () => {
     addBookToStorage();
 }
 
-const deleteBook = (el) => {
-    if(el.classList.contains('btn-delete-book')) {
-        el.parentElement.parentElement.parentElement.remove();
-    }
-
+const deleteBook = (index) => {
+    library.splice(index, 1);
+    addBookToStorage();
+    renderBooks();
 }
+
 const editBook = (el) => {
     if(el.classList.contains('btn-edit-book')) {
         
@@ -126,7 +140,7 @@ const editBook = (el) => {
 const clearForm = () => {
     document.querySelector('#book-title').value = '';
     document.querySelector('#book-author').value = '';
-    document.querySelector('#book-genre').value = '';
+    document.querySelector('#book-pages').value = '';
     document.querySelector('#book-status').value = '';
 }
 
@@ -170,4 +184,7 @@ libraryGrid.addEventListener('click', e => {
 deleteBook(e.target);})
 
 // Event: Edit book
-libraryGrid.addEventListener('click', e => { editBook(e.target);})
+libraryGrid.addEventListener('mouseover', e => { 
+    // editBook(e.target);
+    console.log(e.target);
+});

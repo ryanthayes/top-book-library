@@ -171,20 +171,23 @@ dialog::backdrop {
 /* === FORM === */
 
 .book-form {
-    padding: var(--spacer-lg) 0;
+    position: relative;
+    width: minmax(auto, 300px);
+    padding: var(--spacer-md) 0;
 }
 
 .book-input-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
-    margin-bottom: var(--spacer-md);
+    display: flex;
+    flex-direction: column;
+    align-items: ;
+    margin-bottom: var(--spacer-md); 
     list-style: none;
 }
 .book-label {
     font-size: var(--fs-400);
-    font-weight: var(--fw-medium);
+    font-weight: var(--fw-semi-bold);
     color: var(--clr-primary-900);
+    text-transform: uppercase;
 }
 .book-input {
     padding: var(--spacer-sm);
@@ -198,6 +201,19 @@ dialog::backdrop {
     font-size: var(--fs-300);
 }
 
+.btn-cancel {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: -2em;
+    background: transparent;
+    border: 0;
+}
+
+.btn-cancel-svg {
+    fill: var(--clr-primary-900);
+}
+
 /* === BOOK CARDS === */
 
 .library-grid {
@@ -205,7 +221,7 @@ dialog::backdrop {
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--br-lg);
-    margin: var(--spacer-lg) auto;
+    margin: var(--spacer-md) auto;
 }
 
 .book-card {
@@ -215,9 +231,10 @@ dialog::backdrop {
     align-items: center;
     justify-content: center;
     gap: var(--spacer-md);
-    width: 275px;
-    height: 300px;
+    width: 250px;
+    height: 350px;
     padding: var(--spacer-lg) var(--spacer-md);
+    text-align: center;
     color: var(--clr-primary-900);
     background-color: var(--clr-neutral-100);
     border-radius: var(--br-md);
@@ -232,22 +249,6 @@ dialog::backdrop {
 .book-author {
     font-size: var(--fs-500);
     font-weight: var(--fw-medium);
-}
-
-.btn-delete-book,
-.btn-edit-book, 
-.book-status,
-.book-pages {
-    color: var(--clr-primary-300);
-    background: transparent;
-    border: 0;
-    transition: .03s ease;
-}
-
-.btn-delete-book:hover,
-.btn-edit-book:hover {
-    cursor: pointer;
-    opacity: 80%;
 }
 
 .book-header {
@@ -270,6 +271,26 @@ dialog::backdrop {
     display: flex;
     gap: var(--spacer-md);
     padding: var(--spacer-sm);
+}
+
+.btn-delete-book,
+.btn-edit-book, 
+.book-status,
+.book-pages {
+    color: var(--clr-primary-300);
+    background: transparent;
+    border: 0;
+    transition: .03s ease;
+}
+
+.btn-delete-book:hover,
+.btn-edit-book:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+.book-status__x {
+    opacity: 50%;
 }
 
 /* === FOOTER === */
@@ -310,23 +331,6 @@ dialog::backdrop {
 .btn-book-modal:hover {
     cursor: pointer;
     opacity: 80%;
-}
-
-.btn-form {
-    width: 100%;
-}
-
-.btn-cancel {
-    cursor: pointer;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: transparent;
-    border: 0;
-}
-
-.btn-cancel-svg {
-    fill: var(--clr-primary-900);
 }
 
 /* ==== UTILITY CLASSES === */
