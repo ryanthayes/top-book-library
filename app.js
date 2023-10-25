@@ -3,6 +3,7 @@
 // Check if book exists, if so don't add
 // Edit Books
 // Are you sure you want to delete?
+// Add running pages count
 
 
 // DOM Elements
@@ -16,33 +17,8 @@ const libraryGrid = document.querySelector('#library-grid');
 let library =  [];
 
 // UI Elements
-
-const showLibraryInfo = () => {
-    const booksRead = document.querySelector('#books-read');
-    const booksUnread = document.querySelector('#books-unread');
-    const totalBooks = document.querySelector('#total-books');
-
-    let readBooksCounter = 0;
-    let unreadBooksCounter = 0;
-    
-    // booksRead.textContent = 0;
-    // booksUnread.textContent = 0;
-
-    library.forEach((library) => {
-        if (library.status === 'Read') {
-            readBooksCounter += 1;
-            console.log(`Number of books read = ${readBooksCounter}`)
-        } else if (library.status === "Not Read") {
-            unreadBooksCounter +=1;
-            console.log(unreadBooksCounter)
-        }
-    });
-    // totalBooks.textContent = library.length;
-};   
- 
 const renderBooks = () => {
     libraryGrid.textContent= "";
-    showLibraryInfo();
     library.forEach((library, index) => {
 
         // Create DOM elements
@@ -150,6 +126,10 @@ const deleteBook = (index) => {
 
 const editBook = () => {
     console.log("how do I edit a book?");
+    titleInput.value = book.title;
+      authorInput.value = book.author;
+      descInput.value = book.pages;
+      statusInput.value = book.status;
 }
 
 // Event: Render books to DOM
@@ -192,4 +172,3 @@ bookModal.addEventListener('click', e => {
         bookModal.close()
     }
 });
-
